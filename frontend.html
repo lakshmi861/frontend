@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Multi-Crop Soil Advisor</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
+
+            <div>
+                <h1>Multi-Crop Soil Advisor</h1>
+                <p>Smart Soil Health Monitoring System</p>
+            </div>
+        </div>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            <span id="connectionStatus">Demo Sensor Mode</span>
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <!-- Welcome -->
+
+        <section class="welcome-card">
+
+            <div>
+                <h2>Soil Health Dashboard</h2>
+
+                <p>
+                    Monitor soil conditions and identify the most suitable
+                    crop using real-time soil parameters.
+                </p>
+            </div>
+
+            <div class="date-box">
+                <span>System Time</span>
+                <strong id="currentTime">--:--:--</strong>
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTROL PANEL ================= -->
+
+        <section class="control-panel">
+
+            <div class="control-group">
+
+                <label for="cropSelect">
+                    🌾 Select Crop
+                </label>
+
+                <select id="cropSelect">
+
+                    <option value="tomato">Tomato</option>
+                    <option value="rice">Rice</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="maize">Maize</option>
+                    <option value="potato">Potato</option>
+                    <option value="onion">Onion</option>
+                    <option value="chilli">Chilli</option>
+                    <option value="cotton">Cotton</option>
+                    <option value="sugarcane">Sugarcane</option>
+                    <option value="groundnut">Groundnut</option>
+                    <option value="ragi">Ragi</option>
+                    <option value="turmeric">Turmeric</option>
+                    <option value="banana">Banana</option>
+                    <option value="grapes">Grapes</option>
+                    <option value="carrot">Carrot</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="control-group">
+
+                <label>
+                    🔌 Sensor Mode
+                </label>
+
+                <button id="simulationButton" class="primary-btn">
+                    ▶ Start Sensor Simulation
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SENSOR CARDS ================= -->
+
+        <section>
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Live Sensor Readings</h2>
+                    <p>Values received from soil monitoring sensors</p>
+                </div>
+
+                <div class="sensor-time">
+                    Last update:
+                    <span id="lastUpdate">--</span>
+                </div>
+
+            </div>
+
+
+            <div class="sensor-grid">
+
+
+                <!-- Soil Moisture -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-icon moisture">
+                        💧
+                    </div>
+
+                    <div class="sensor-info">
+
+                        <span>Soil Moisture</span>
+
+                        <div>
+                            <strong id="moistureValue">--</strong>
+                            <small>%</small>
+                        </div>
+
+                        <p id="moistureStatus">Waiting...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Soil Temperature -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-icon temperature">
+                        🌡️
+                    </div>
+
+                    <div class="sensor-info">
+
+                        <span>Soil Temperature</span>
+
+                        <div>
+                            <strong id="soilTempValue">--</strong>
+                            <small>°C</small>
+                        </div>
+
+                        <p id="soilTempStatus">Waiting...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- pH -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-icon ph">
+                        🧪
+                    </div>
+
+                    <div class="sensor-info">
+
+                        <span>Soil pH</span>
+
+                        <div>
+                            <strong id="phValue">--</strong>
+                        </div>
+
+                        <p id="phStatus">Waiting...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EC -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-icon ec">
+                        ⚡
+                    </div>
+
+                    <div class="sensor-info">
+
+                        <span>Soil EC</span>
+
+                        <div>
+                            <strong id="ecValue">--</strong>
+                            <small>mS/cm</small>
+                        </div>
+
+                        <p id="ecStatus">Waiting...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Nitrogen -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-icon nitrogen">
+                        N
+                    </div>
+
+                    <div class="sensor-info">
+
+                        <span>Nitrogen</span>
+
+                        <div>
+                            <strong id="nitrogenValue">--</strong>
+                            <small>mg/kg</small>
+                        </div>
+
+                        <p id="nitrogenStatus">Waiting...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Phosphorus -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-icon phosphorus">
+                        P
+                    </div>
+
+                    <div class="sensor-info">
+
+                        <span>Phosphorus</span>
+
+                        <div>
+                            <strong id="phosphorusValue">--</strong>
+                            <small>mg/kg</small>
+                        </div>
+
+                        <p id="phosphorusStatus">Waiting...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Potassium -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-icon potassium">
+                        K
+                    </div>
+
+                    <div class="sensor-info">
+
+                        <span>Potassium</span>
+
+                        <div>
+                            <strong id="potassiumValue">--</strong>
+                            <small>mg/kg</small>
+                        </div>
+
+                        <p id="potassiumStatus">Waiting...</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Humidity -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-icon humidity">
+                        ☁️
+                    </div>
+
+                    <div class="sensor-info">
+
+                        <span>Air Humidity</span>
+
+                        <div>
+                            <strong id="humidityValue">--</strong>
+                            <small>%</small>
+                        </div>
+
+                        <p id="humidityStatus">Waiting...</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HEALTH SECTION ================= -->
+
+        <section class="analysis-grid">
+
+
+            <!-- Soil Health -->
+
+            <div class="analysis-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h2>🌱 Soil Health</h2>
+                        <p>Overall soil condition</p>
+                    </div>
+
+                    <span id="healthBadge" class="badge neutral">
+                        Waiting
+                    </span>
+
+                </div>
+
+
+                <div class="health-score">
+
+                    <div class="score-circle">
+
+                        <span id="healthScore">
+                            --
+                        </span>
+
+                        <small>/100</small>
+
+                    </div>
+
+                    <div>
+
+                        <h3 id="healthTitle">
+                            Waiting for sensors
+                        </h3>
+
+                        <p id="healthDescription">
+                            Start sensor simulation to analyze soil health.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div class="progress-label">
+                        <span>Soil Health Score</span>
+                        <span id="healthPercent">0%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div id="healthProgress"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Crop Suitability -->
+
+            <div class="analysis-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h2>🌾 Crop Suitability</h2>
+                        <p>Selected crop analysis</p>
+                    </div>
+
+                    <span id="cropBadge" class="badge neutral">
+                        Waiting
+                    </span>
+
+                </div>
+
+
+                <div class="crop-result">
+
+                    <div class="crop-symbol">
+                        🌾
+                    </div>
+
+                    <div>
+
+                        <h3 id="selectedCropName">
+                            Select a crop
+                        </h3>
+
+                        <p id="cropRecommendation">
+                            Start the sensor simulation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div class="progress-label">
+                        <span>Suitability</span>
+                        <span id="suitabilityPercent">0%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div id="suitabilityProgress"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ALERTS ================= -->
+
+        <section class="alerts-section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>⚠️ Soil Health Alerts</h2>
+                    <p>Important conditions detected by the system</p>
+                </div>
+
+            </div>
+
+
+            <div id="alertsContainer">
+
+                <div class="empty-alert">
+                    Start sensor simulation to detect soil conditions.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RECOMMENDATIONS ================= -->
+
+        <section class="recommendation-section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>💡 Advisor Recommendations</h2>
+                    <p>Suggested actions based on current readings</p>
+                </div>
+
+            </div>
+
+
+            <div id="recommendationsContainer">
+
+                <div class="recommendation empty-recommendation">
+                    Recommendations will appear here.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SENSOR INFORMATION ================= -->
+
+        <section class="hardware-section">
+
+            <h2>🔌 Connected Hardware</h2>
+
+            <div class="hardware-grid">
+
+                <div class="hardware-item">
+                    <strong>ESP32</strong>
+                    <span>Microcontroller</span>
+                </div>
+
+                <div class="hardware-item">
+                    <strong>Capacitive Soil Sensor</strong>
+                    <span>Soil Moisture</span>
+                </div>
+
+                <div class="hardware-item">
+                    <strong>DS18B20</strong>
+                    <span>Soil Temperature</span>
+                </div>
+
+                <div class="hardware-item">
+                    <strong>Soil pH Sensor</strong>
+                    <span>pH Monitoring</span>
+                </div>
+
+                <div class="hardware-item">
+                    <strong>Soil EC Sensor</strong>
+                    <span>Electrical Conductivity</span>
+                </div>
+
+                <div class="hardware-item">
+                    <strong>NPK Sensor</strong>
+                    <span>Nitrogen / Phosphorus / Potassium</span>
+                </div>
+
+                <div class="hardware-item">
+                    <strong>DHT11</strong>
+                    <span>Temperature / Humidity</span>
+                </div>
+
+                <div class="hardware-item">
+                    <strong>OLED Display</strong>
+                    <span>Local Sensor Display</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            Multi-Crop Soil Advisor |
+            Smart Agriculture Prototype
+        </p>
+
+        <p>
+            ESP32 + IoT + Soil Health Analytics
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
